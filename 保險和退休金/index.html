@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>我的保險生涯</title>
+  <style>
+    body { 
+      width: 300px; 
+      padding: 10px; 
+      background-color: white; 
+      border: 2px solid gold; 
+    }
+    input[type="text"], input[type="date"], input[type="number"] { 
+      width: 100%; 
+      margin-bottom: 10px; 
+    }
+    .result {
+      margin-bottom: 10px;
+    }
+  </style>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#000000">
+</head>
+<body>
+  <h1>我的保險生涯</h1>
+  
+  <div id="inputForm">
+    <h2>輸入新數據</h2>
+    <form id="dataForm">
+      <label for="name">名子：</label>
+      <input type="text" id="name" required>
+      <br>
+      <label for="birthdate">生日：</label>
+      <input type="date" id="birthdate" required>
+      <br>
+      <label for="insuranceStartDate">保險入職日：</label>
+      <input type="date" id="insuranceStartDate" required>
+      <br>
+      <label for="insuranceEndDate">保險退休日：</label>
+      <input type="date" id="insuranceEndDate" required>
+      <br>
+      <label for="desiredPension">想要多少退休金：</label>
+      <input type="number" id="desiredPension" required>
+      <br>
+      <button type="submit">提交</button>
+    </form>
+  </div>
+
+  <div id="results">
+    <h2>分析結果</h2>
+    <p class="result">到生命預計還有多少年和天：<span id="yearsLeftToLive">0</span> 年 <span id="daysLeftToLive">0</span> 天</p>
+    <p class="result">保險從業時間到目前為止總共多少年和天：<span id="yearsWorked">0</span> 年 <span id="daysWorked">0</span> 天</p>
+    <p class="result">目前時間到退休日還有多少年和天：<span id="yearsUntilRetirement">0</span> 年 <span id="daysUntilRetirement">0</span> 天</p>
+    <p class="result">退休金每天要存多少錢才可以在退休日順利退休：<span id="dailySavings">0</span> 元</p>
+    <p class="result">退休金每年要存多少錢才可以在退休日順利退休：<span id="yearlySavings">0</span> 元</p>
+  </div>
+
+  <div id="error" style="display: none; color: red;"></div>
+
+  <script src="script.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js')
+        .then(function(registration) {
+          console.log('Service Worker registered with scope:', registration.scope);
+        }).catch(function(error) {
+          console.log('Service Worker registration failed:', error);
+        });
+    }
+  </script>
+</body>
+</html>
